@@ -725,7 +725,7 @@ BARS.defineActions(function() {
 		keybind: new Keybind({key: 'e', shift: true}),
 		condition: {modes: ['edit'], features: ['meshes'], method: () => (Mesh.selected[0] && Mesh.selected[0].getSelectedVertices().length)},
 		click() {
-			function runEdit(amended, extend = 1) {
+			function runEdit(amended, extend = 0) {
 				Undo.initEdit({elements: Mesh.selected, selection: true}, amended);
 
 				Mesh.selected.forEach(mesh => {
@@ -909,7 +909,7 @@ BARS.defineActions(function() {
 			runEdit();
 
 			Undo.amendEdit({
-				extend: {type: 'number', value: 1, label: 'edit.extrude_mesh_selection.extend', interval_type: 'position'},
+				extend: {type: 'number', value: 0, label: 'edit.extrude_mesh_selection.extend', interval_type: 'position'},
 			}, form => {
 				runEdit(true, form.extend);
 			})
